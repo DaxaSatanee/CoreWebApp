@@ -1,0 +1,37 @@
+<h1 id="tableLabel">Items</h1>
+
+
+<p>
+  Item: <input [(ngModel)]="selectedItem.Name" type="text" #IName>
+  <input type="hidden" #IId>
+</p>
+<p>
+  Price: <input type="number" #IPrice>
+</p>
+<p>
+  <button (click)="saveItem(IId.value,IName.value,IPrice.value)">Save</button>
+</p>
+
+
+<p *ngIf="!items"><em>Loading...</em></p>
+
+<table class='table table-striped' aria-labelledby="tableLabel" *ngIf="items">
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th>Name</th>
+      <th>Price</th>
+      <th>Edit</th>
+      <th>Delete</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let itemO of items">
+      <td>{{ itemO.id }}</td>
+      <td>{{ itemO.name }}</td>
+      <td>{{ itemO.price }}</td>
+      <td><button (click)="editItem(itemO)">Edit</button></td>
+      <td><button (click)="deleteItem(itemO.id)">Delete</button></td>
+    </tr>
+  </tbody>
+</table>
